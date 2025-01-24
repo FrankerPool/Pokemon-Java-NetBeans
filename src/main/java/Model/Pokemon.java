@@ -12,8 +12,17 @@ import java.util.ArrayList;
  * @author thela
  */
 public class Pokemon {
-    protected String TypePokemon;
-    protected int LevelPokemon;
-    protected int LifePokemon;
-    public List<Attack> myList = new ArrayList<>();
+
+    public Pokemon(String NamePokemon,String TypePokemon, int LevelPokemon, int LifePokemon, List<Attack> PokemonAttacks) {
+        this.NamePokemon = NamePokemon;
+        this.TypePokemon = TypePokemon;
+        this.LevelPokemon = LevelPokemon;
+        this.LifePokemon = LifePokemon;
+        this.PokemonAttacks = PokemonAttacks;
+    }
+    public String TypePokemon;
+    public String NamePokemon;
+    public int LevelPokemon;
+    public int LifePokemon;
+    public List<Attack> PokemonAttacks = new ArrayList<>();
 }

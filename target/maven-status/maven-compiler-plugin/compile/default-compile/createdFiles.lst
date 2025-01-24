@@ -1,1 +1,7 @@
+Views\Game.class
+Model\Attack.class
+Views\Game$1.class
+Model\Player.class
+Model\Pokemon.class
 com\mycompany\pokemon\java\PokemonJava.class
+Model\Item.class

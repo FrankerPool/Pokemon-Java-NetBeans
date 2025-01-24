@@ -11,6 +11,12 @@ import java.awt.font.NumericShaper.Range;
  * @author thela
  */
 public class Attack {
+
+    public Attack(String Name, int Power, int Effectiveness) {
+        this.Name = Name;
+        this.Power = Power;
+        this.Effectiveness = Effectiveness;
+    }
     protected String Name;
     protected int Power;
     protected int Effectiveness;
