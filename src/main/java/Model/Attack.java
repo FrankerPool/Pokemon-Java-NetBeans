@@ -17,7 +17,7 @@ public class Attack {
         this.Power = Power;
         this.Effectiveness = Effectiveness;
     }
-    protected String Name;
-    protected int Power;
-    protected int Effectiveness;
+    public String Name;
+    public int Power;
+    public int Effectiveness;
 }

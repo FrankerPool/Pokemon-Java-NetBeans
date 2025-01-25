@@ -11,6 +11,7 @@ import Model.Pokemon;
 import Views.Game;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /**
  *
@@ -20,6 +21,8 @@ public class PokemonJava {
     
     //lista con todos los pokemons - agregados manualmente
     public List<Pokemon> DataBasePokemons = new ArrayList<>();
+    //pokemons seleccionados de manera aleatoria
+    public List<Pokemon> SelectedPokemons = new ArrayList<>();
     //necesitamos tambien items
     public List<Item> DataBaseItems = new ArrayList<>();
     //lista de los ataques disponibles para todos los pokemons electricos
@@ -27,10 +30,23 @@ public class PokemonJava {
     public List<Attack> PokemonsAttackFire = new ArrayList<>();
     public List<Attack> PokemonsAttackWater = new ArrayList<>();
     //
-    public Player playerInfo = new Player();
-    //
-    public void initializatePlayer(){
-        playerInfo = new Player(DataBasePokemons,DataBaseItems);
+    //si se puede tener un equipo con los mismos pokemons
+    public Player selectPokemons(int sizeTeam, Player playerData, String playerName){
+        //obtengo un numero del 0 al tamaño de el array
+        for (int i = 0; i < sizeTeam; i++) {
+            int RandomIDPokemon = (int) (Math.random() * DataBasePokemons.size());
+            Pokemon randomPokemon = DataBasePokemons.get(RandomIDPokemon);
+            SelectedPokemons.add(randomPokemon);
+        }
+            playerData = new Player(playerName,SelectedPokemons,DataBasePokemons,DataBaseItems);
+            debugInfoPlayer(playerData);
+            return playerData;
+    }
+    //print info
+    public void debugInfoPlayer(Player playerData){
+        for (Pokemon DataBasePokemon : playerData.SelectedPokemons) {
+            System.err.println("Trainer - "+playerData.NamePlayer+ " pokemon: " + DataBasePokemon.NamePokemon + " - Attack: "+ DataBasePokemon.PokemonAttacks.get(0).Name);
+        }
     }
     //
     public void iniTializateDataPokemonsAttacks(){
@@ -72,11 +88,16 @@ public class PokemonJava {
     }
     
     public static void main(String[] args) {
-        PokemonJava PJ = new PokemonJava();
-        PJ.iniTializateDataPokemonsAttacks();
-        PJ.iniTializateDataPokemons();
-        PJ.initializatePlayer();
-        System.err.println("pokemon " + PJ.playerInfo.PlayerPokemons.get(0).NamePokemon);
+        
+        PokemonJava ManagerGame = new PokemonJava();
+        //info del jugador y el enemigo
+        ManagerGame.iniTializateDataPokemonsAttacks();
+        ManagerGame.iniTializateDataPokemons();
+        Player playerInfo = new Player();
+        Player enemyInfo = new Player();
+        playerInfo = ManagerGame.selectPokemons(3,playerInfo,"Azul");
+        enemyInfo = ManagerGame.selectPokemons(3,enemyInfo,"Rojo");;
+
         //lanzamos la vista del juego para iniciar
         //java.awt.EventQueue.invokeLater(() -> {
             //new Game().setVisible(true); // Lanza la vista específica
